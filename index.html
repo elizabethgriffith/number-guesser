@@ -8,7 +8,24 @@
   <title>Number Guessing Game</title>
 </head>
 <body>
+  <h1>Number Guessing Game</h1>
+  <p>The object of the game is to guess the correct number between <span class='min'></span> and <span class="max"></span> before running out of guesses.</p>
+  <section>
+    <p class="whiteText">How many guesses do you think it will take you?</p>
+    <select name="guesses" id="numOfGuesses">
+      <option value="select">Select a Number</option>
+      <option value="oneGuess">1</option>
+      <option value="twoGuesses">2</option>
+      <option value="threeGuesses">3</option>
+    </select>
+    <input type="submit" value="I've Got This" class="btn">
+  </section>
+  <section>
+    <input type="number" id="guessInput" placeholder="Enter your guess...">
+    <input type="submit" value="GUESS" id="guessButton">
+  </section>
   
+  <p class="message"></p> 
   <script src="app.js"></script>
 </body>
 </html>
