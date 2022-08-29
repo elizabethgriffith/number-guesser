@@ -10,6 +10,7 @@ const numOfGuesses = document.querySelector('#numOfGuesses')
       guessBtn = document.querySelector('#guessBtn')
       guessInput = document.querySelector('#guessInput')
       message = document.querySelector('.message')
+      game = document.querySelector('#game')
 
 function randomNumber(min, max){
   return Math.floor(Math.random()*(max-min+1) + min)
@@ -18,6 +19,14 @@ function randomNumber(min, max){
 // Load Event Listeners
 numSubmitBtn.addEventListener('click', saveNumOfGuesses)
 guessBtn.addEventListener('click', validateGuess)
+game.addEventListener('mousedown', playAgain)
+
+// Play again
+function playAgain(e){
+  if (e.target.className === 'playAgain'){
+    window.location.reload()
+  }
+}
 
 // Store numOfGuesses input
 function saveNumOfGuesses(e){
@@ -37,6 +46,7 @@ function saveNumOfGuesses(e){
   console.log(guessesLeft)
 
   // Lock input
+  numOfGuesses.disabled = true
 }
 
 function validateGuess(){
@@ -52,7 +62,6 @@ function validateGuess(){
   }
 }
 
-// Check guess
 function checkGuess(guess){
   if (guess === winningNumber){
     gameOver(true, `Woop! Woop! ${winningNumber} is correct!`)
@@ -72,6 +81,19 @@ function checkGuess(guess){
 // Create setMessage function 
 function setMessage(msg, color){
   message.textContent = msg
-  message.color = color
+  message.style.color = color
 }
 // Create gameOver function
+function gameOver(won, msg){
+  let color
+  won === true ? color = 'green' : color = 'red'
+
+  guessInput.disabled = true
+  guessInput.style.borderColor = color
+  message.style.color = color
+  setMessage(msg)
+
+  // Play again?
+  guessBtn.value = 'Play Again?'
+  guessBtn.className += 'playAgain'
+}
