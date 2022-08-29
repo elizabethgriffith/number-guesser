@@ -21,11 +21,16 @@ numSubmitBtn.addEventListener('click', saveNumOfGuesses)
 
 // Store numOfGuesses input
 function saveNumOfGuesses(e){
+  if (numOfGuesses.value === 'select'){
+    alert("You must select one, two, or three!")
+  }
+
+
   if (numOfGuesses.value === 'oneGuess'){
     guessesLeft = 1
   } else if (numOfGuesses.value === 'twoGuesses'){
     guessesLeft = 2
-  } else {
+  } else if (numOfGuesses.value === 'threeGuesses'){
     guessesLeft = 3
   }
   console.log(guessesLeft)
